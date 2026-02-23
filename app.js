@@ -1,3 +1,8 @@
+function resetMode() {
+    localStorage.removeItem("appMode");
+    location.reload();
+}
+
 function setMode(mode) {
     localStorage.setItem("appMode", mode);
     document.getElementById("onboarding").style.display = "none";
