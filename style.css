@@ -1,19 +1,47 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     text-align: center;
-    background-color: #f8e8e8;
+    background-color: #fdf3f5;
     color: #444;
+    margin: 0;
+    padding: 20px;
 }
 
 h1 {
-    color: #d46a92;
+    color: #c85a85;
+    margin-bottom: 5px;
+}
+
+p {
+    margin: 5px 0;
 }
 
 button {
-    padding: 12px 20px;
-    border-radius: 20px;
+    padding: 14px 25px;
+    border-radius: 30px;
     border: none;
-    background-color: #d46a92;
+    background-color: #c85a85;
     color: white;
+    font-size: 16px;
     cursor: pointer;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #a9446d;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    margin-top: 25px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.countdown {
+    font-size: 22px;
+    font-weight: bold;
+    color: #c85a85;
+    margin-top: 15px;
 }
