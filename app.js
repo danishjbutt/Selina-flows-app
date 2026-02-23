@@ -19,17 +19,12 @@ function calculateDates(lastStartDate) {
     const nextPeriod = new Date(lastStartDate);
     nextPeriod.setDate(nextPeriod.getDate() + cycleLength);
 
-    // Ovulation approx 14 days before next period
-    const ovulation = new Date(nextPeriod);
-    ovulation.setDate(ovulation.getDate() - 14);
-
-    // Fertile window (5 days before ovulation)
-    const fertileStart = new Date(ovulation);
-    fertileStart.setDate(fertileStart.getDate() - 5);
+    // PMS usually starts about 5 days before next period
+    const pmsStart = new Date(nextPeriod);
+    pmsStart.setDate(pmsStart.getDate() - 5);
 
     localStorage.setItem("nextPeriod", nextPeriod.toISOString());
-    localStorage.setItem("ovulation", ovulation.toISOString());
-    localStorage.setItem("fertileStart", fertileStart.toISOString());
+    localStorage.setItem("pmsStart", pmsStart.toISOString());
 
     displayInfo();
 }
@@ -37,17 +32,25 @@ function calculateDates(lastStartDate) {
 function displayInfo() {
     const last = localStorage.getItem("lastPeriodStart");
     const next = localStorage.getItem("nextPeriod");
-    const ovulation = localStorage.getItem("ovulation");
-    const fertileStart = localStorage.getItem("fertileStart");
+    const pmsStart = localStorage.getItem("pmsStart");
 
-    if (last && next && ovulation && fertileStart) {
+    if (last && next && pmsStart) {
         const today = new Date();
         const nextDate = new Date(next);
-        const ovDate = new Date(ovulation);
-        const fertileDate = new Date(fertileStart);
+        const pmsDate = new Date(pmsStart);
 
         const diffTime = nextDate - today;
         const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+        let phaseMessage = "";
+
+        if (today >= pmsDate && today < nextDate) {
+            phaseMessage = "You may start feeling PMS symptoms. Be kind to yourself 💕";
+        } else if (diffDays <= 2) {
+            phaseMessage = "Your period is almost here. Prepare your essentials 🌸";
+        } else {
+            phaseMessage = "You're in your regular cycle phase ✨";
+        }
 
         document.getElementById("info").innerHTML = `
             <div class="card">
@@ -55,8 +58,7 @@ function displayInfo() {
                 <p><strong>Next Period:</strong><br>${nextDate.toDateString()}</p>
                 <p class="countdown">${diffDays} days remaining</p>
                 <hr>
-                <p><strong>Ovulation Day:</strong><br>${ovDate.toDateString()}</p>
-                <p><strong>Fertile Window Starts:</strong><br>${fertileDate.toDateString()}</p>
+                <p>${phaseMessage}</p>
             </div>
         `;
     }
