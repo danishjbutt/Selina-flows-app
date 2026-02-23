@@ -16,17 +16,24 @@
     <button onclick="setMode('advanced')">💎 Advanced Mode</button>
 </div>
   
-<h1>Selina Flows</h1>
-<p>Understand your flow. Own your rhythm.</p>
-  
-<div class="card">
-    <label for="cycleLength">Your Cycle Length (days)</label><br><br>
-    <input type="number" id="cycleLength" min="21" max="40" placeholder="28">
-    <button onclick="saveCycleLength()">Save Cycle</button>
+<!-- Main App -->
+<div id="mainApp">
+
+    <h1>Selina Flows</h1>
+    <p>Understand your flow. Own your rhythm.</p>
+
+    <div class="card">
+        <label for="cycleLength">Your Cycle Length (days)</label><br><br>
+        <input type="number" id="cycleLength" min="21" max="40" placeholder="28">
+        <button onclick="saveCycleLength()">Save Cycle</button>
+    </div>
+
+    <button onclick="startPeriod()">Start Period</button>
+
+    <div id="info"></div>
+
 </div>
-  
-<button onclick="startPeriod()">Start Period</button>
-<div id="info"></div>
+
 <script src="app.js"></script>
 </body>
 </html>
