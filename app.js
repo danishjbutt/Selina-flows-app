@@ -1,3 +1,11 @@
+function saveCycleLength() {
+    const cycle = document.getElementById("cycleLength").value;
+    if (cycle) {
+        localStorage.setItem("cycleLength", cycle);
+        alert("Cycle length saved!");
+    }
+}
+
 function startPeriod() {
     const today = new Date();
     localStorage.setItem("lastPeriodStart", today.toISOString());
@@ -5,7 +13,9 @@ function startPeriod() {
 }
 
 function calculateNextPeriod(lastStartDate) {
-    const cycleLength = 28; // default cycle
+    let cycleLength = localStorage.getItem("cycleLength") || 28;
+    cycleLength = parseInt(cycleLength);
+
     const nextPeriod = new Date(lastStartDate);
     nextPeriod.setDate(nextPeriod.getDate() + cycleLength);
 
