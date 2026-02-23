@@ -18,9 +18,18 @@ function displayInfo() {
     const next = localStorage.getItem("nextPeriod");
 
     if (last && next) {
+        const nextDate = new Date(next);
+        const today = new Date();
+
+        const diffTime = nextDate - today;
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
         document.getElementById("info").innerHTML = `
-            <p>Last Period: ${new Date(last).toDateString()}</p>
-            <p>Next Expected Period: ${new Date(next).toDateString()}</p>
+            <div class="card">
+                <p><strong>Last Period:</strong><br>${new Date(last).toDateString()}</p>
+                <p><strong>Next Expected Period:</strong><br>${nextDate.toDateString()}</p>
+                <p class="countdown">${diffDays} days remaining</p>
+            </div>
         `;
     }
 }
