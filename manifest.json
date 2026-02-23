@@ -1,0 +1,9 @@
+{
+  "name": "Selina Flows",
+  "short_name": "Selina",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8e8e8",
+  "theme_color": "#d46a92",
+  "icons": []
+}
